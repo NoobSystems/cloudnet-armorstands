@@ -38,7 +38,8 @@ public class CloudNetArmorStands implements PlatformEntrypoint {
     public static final List<CloudNetArmorStand> ARMOR_STANDS = new ArrayList<>();
 
     @Inject
-    public CloudNetArmorStands(JavaPlugin plugin, ConfigManager configManager, CloudNetUtils cloudNetUtils) {
+    public CloudNetArmorStands(JavaPlugin plugin, PluginMessagingListener pluginMessagingListener, ConfigManager configManager, CloudNetUtils cloudNetUtils) {
+        plugin.getServer().getMessenger().registerIncomingPluginChannel(plugin, "noobcore:main", pluginMessagingListener);
         ARMOR_STANDS.addAll(configManager.loadArmorStands());
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
